@@ -48,8 +48,6 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http) {
 	}
 	$scope.$watch('rangeMin',function() {
 
-		//console.log($scope.runLayer);
-		//console.log($scope.runLayer._layers['28']._latlngs[0]);
 	});
 	$scope.test = function () {
 		var x2js = new X2JS();
@@ -63,15 +61,13 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http) {
 			var dataPoints = 100;
 			for (var i=0;i<dataPoints;i++) {
 				var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
-				coordList.push([parseFloat(coord[1]), parseFloat(coord[0])]);
+				coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
 			}
+			console.log(coordList);
 
 			var myLines = [{
 				"type": "LineString",
-				"coordinates": [[-100, 40], [-105, 45], [-110, 55]]
-			}, {
-				"type": "LineString",
-				"coordinates": [[-105, 40], [-110, 45], [-115, 55]]
+				"coordinates": coordList
 			}];
 
 			var myStyle = {
