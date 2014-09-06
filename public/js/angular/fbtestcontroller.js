@@ -32,7 +32,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope) {
 				} else {
 					console.log('FB LOGIN ERROR: User cancelled login or did not fully authorize.');
 				}
-			}, { scope: 'publish_actions,publish_stream' }); // The specific permissions we need from FB
+			}, { scope: '' }); // The specific permissions we need from FB
 		});
 	}
     $scope.test = "Click above...";
