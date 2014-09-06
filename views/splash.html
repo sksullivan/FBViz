@@ -15,7 +15,15 @@
 	<body ng-controller="fbtestcontroller">
 		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
 
-		<div class="container"> 
+		<div class="container">
+		<form novalidate class="date-form">
+		Pick dates and click download:<br>
+    				Start Date: <input id="startForm" type="date" value="{{startRange}}" ng-model="startRange"/><br/>
+    		 		End Date: <input id="endForm" type="date" ng-model="endRange"/><br/>
+    				<button ng-click="updateDate()">
+    					<a id="kml-download" ng-href="https://maps.google.com/locationhistory/b/0/kml?startTime={{startRange}}&endTime={{endRange}}" target="_blank">Download Location History</a>
+    				</button>
+  				</form>
 			<div id="map" style="display: none;"></div>
 			<div id="control-bar">
 				<h1 class = "centered"> TooMuchAbout.Me </h1> 
@@ -24,7 +32,7 @@
 				</div> 
 
 				<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax" style="display: none;"></slider>
-				<div id="dates">{{startDate}} - {{endDate}}</span>
+				
 			</div>
 			<div class = "header1 centered">{{test}}</div>
 			<div class = "full-wrapper">

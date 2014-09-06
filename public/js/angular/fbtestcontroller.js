@@ -10,8 +10,8 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.map = L.mapbox.map('map', 'bwang19.je7fg9i6');
     	$scope.rangeMin = 0;
     	$scope.rangeMax = 1000;
-    	$scope.startRange = new Date().getTime(); //default range, 1 day
-    	$scope.endRange = $scope.startRange - 86400000;
+    	$scope.endRange = new Date();
+    	$scope.startRange = new Date(); //default range, 1 day
     	$scope.getKML();
 		$scope.pathStyle = {
 			"color": "#ff7800",
