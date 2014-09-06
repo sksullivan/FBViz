@@ -10,10 +10,9 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.map = L.mapbox.map('map', 'bwang19.je7fg9i6');
     	$scope.rangeMin = 0;
     	$scope.rangeMax = 1000;
-    	var x2js = new X2JS();
-    	$http.get('/js/history.kml').success(function (data) {
-			$scope.kmlJSON = x2js.xml_str2json(data);
-		});
+    	$scope.startRange = new Date().getTime(); //default range, 1 day
+    	$scope.endRange = $scope.startRange - 86400000;
+    	$scope.getKML();
 		$scope.pathStyle = {
 			"color": "#ff7800",
 			"weight": 5,
@@ -22,11 +21,24 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.$watch('rangeMin',function() {
 			$scope.updateRange();
 		});
-
 		$scope.$watch('rangeMax',function() {
 			$scope.updateRange();
 		});
 	};
+
+	$scope.getKML = function() {
+		var x2js = new X2JS();
+    	$http.get('/js/history.kml').success(function (data) {
+			$scope.kmlJSON = x2js.xml_str2json(data);
+			$scope.updateRange();
+		});
+	}
+
+	$scope.updateDate = function() {
+		$scope.startRange = new Date($scope.startRange).getTime();
+		$scope.endRange = new Date($scope.endRange).getTime();
+		$scope.getKML();
+	}
 
 	$scope.dataList = new Array(5); // this will hold the response later
 
@@ -95,7 +107,6 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			return;
 		}
 		if ($scope.pathLayer != undefined) {
-			console.log("removing");
 			$scope.map.removeLayer($scope.pathLayer);
 		}
 
@@ -103,34 +114,24 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		var max = parseInt($scope.rangeMax/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 		var min = parseInt($scope.rangeMin/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 
-		// var secStartDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
-		// var date1 = Date(secStartDate);
-		console.log($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
-		// $scope.startDate = date1.toString().substr(4,11);
+		$scope.startDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[min]).substr(0,10);
+		$scope.endDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[max-1]).substr(0,10);
 
-		// var secEndDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[max]);
-		// var date2 = Date(secEndDate);
-		// $scope.endDate = date2.toString().substr(4,11);
+		for (var i=min;i<max;i++) {
+			var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
+			coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
+		}
+		L.LineUtil.simplify(coordList);
 
-		// console.log(date1);
-		// console.log(secStartDate);
+		$scope.path = [{
+			"type": "LineString",
+			"coordinates": coordList
+		}];
 
-		// for (var i=min;i<max;i++) {
-		// 	var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
-		// 	coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
-		// }
-		// L.LineUtil.simplify(coordList);
-		// console.log("changing dat");
-
-		// $scope.path = [{
-		// 	"type": "LineString",
-		// 	"coordinates": coordList
-		// }];
-
-		// $scope.pathLayer = L.geoJson($scope.path, {
-		// 	style: $scope.pathStyle
-		// })
-		// $scope.pathLayer.addTo($scope.map);
+		$scope.pathLayer = L.geoJson($scope.path, {
+			style: $scope.pathStyle
+		})
+		$scope.pathLayer.addTo($scope.map);
 	}
 	
 	var k = 0;
@@ -138,14 +139,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 	$scope.updateTimes = function() {
 		for(var i = 0; i < $scope.dataList.length; i++) {
 			for(var j = 0; j < $scope.dataList[i].length; j++) {
-				// for debugging purposes
-				//bless nick's soul
 				$scope.dataList[i][j].created_time = (new Date($scope.dataList[i][j].created_time)).getTime();
-				//console.log($scope.otherArr.push($scope.dataList[i][j].created_time)); 
-				//$scope.otherArr[k] = Date.parse($scope.otherArr[k]);
-				//$scope.dataList[i][j] = $scope.otherArr[k];
-				//k++;
-				//$scope.dataList[i][j].created_time = (Date.parse($scope.dataList[i][j].created_time));
 			}
 		}
 	}

@@ -15,13 +15,14 @@
 	</head>	
 	<body ng-controller="fbtestcontroller">
 		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
 		<div class = "container"> 
 			<div id="map"></div>
-			<div id="fb">
+			<div id="control-bar">
 				<h1 class = "centered"> TooMuchAbout.Me </h1> 
 				<div class = "centered" id = "top-buttons">
 					<button ng-click="login()">Log-in</button>
-					<button ng-click="updateRange()">Test</button>
+					<!--<button ng-click="updateRange()">Test</button>-->
 				</div> 
 
 				<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
@@ -44,5 +45,18 @@
 		<!--<div ng-repeat = "some in otherArr track by $index"> 
 			{{otherArr[$index]}}
 		</div> -->      
+<!--=======
+		<div id="map"></div>
+		<div id="control-bar">
+			<button ng-click="login()">Login to FB</button>
+			<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
+			<div id="dates">{{startDate}} to {{endDate}}</span>
+			<form novalidate class="date-form">
+    			Start Date: <input type="date" ng-model="startRange"/><br/>
+    		 	End Date: <input type="date" ng-model="endRange"/><br/>
+    			<button ng-click="updateDate()">Update</button>
+  			</form>
+		</div>  
+>>>>>>> c2ef3a804448d0d4f9171f9676336bd550cef435 --> 
 	</body>	
 </html>

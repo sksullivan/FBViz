@@ -22,11 +22,11 @@ body {
           font-size: 10px; }
         body .container .full-wrapper .posts #status {
           font-size: 15px; }
-    body .container #fb {
+    body .container #control-bar {
       width: 50%;
       margin-left: 25%;
       margin-right: 25%; }
-      body .container #fb button {
+      body .container #control-bar button {
         text-align: center;
         padding-top: 5px;
         padding: 9px 18px;
@@ -37,7 +37,7 @@ body {
         color: white;
         vertical-align:middle;
         border: 1px solid black; }
-        body .container #fb button:hover {
+        body .container #control-bar button:hover {
           opacity: 0.7;
           cursor: pointer; }
 
@@ -52,3 +52,26 @@ body {
 #top-buttons{
   margin-top: 10px;
 }
+slider{
+  width: 800px;
+}
+#map { 
+  position: absolute;
+  top: 0;
+  bottom: 45%;
+  left: 0;
+  right: 0;
+}
+
+#control-bar {
+  position: absolute;
+  top: 60%;
+  width: 100%;
+}
+
+#dates {
+  width:100%;
+  bottom: 0;
+  text-align: center;
+}
+
