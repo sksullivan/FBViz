@@ -1,4 +1,4 @@
-window.onload = function(){
+
 	//var map = L.map('map').setView([ 42.2924634,-83.716433], 13);
 
 	/*L.tileLayer('http://{s}.tiles.mapbox.com/v3/bwang19.je7fg9i6/{z}/{x}/{y}.png', {
@@ -22,4 +22,3 @@ window.onload = function(){
         map.fitBounds(runLayer.getBounds());
     })
     .addTo(map);
-}

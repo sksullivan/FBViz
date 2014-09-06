@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
-<name>Location history from 08/07/2014 to 09/06/2014</name>
+<name>Location history from 08/09/2014 to 09/19/2014</name>
 <open>1</open>
 <description/>
 <StyleMap id="multiTrack">
@@ -39,7 +39,7 @@
 </Style>
 <Placemark>
 <name>Latitude User</name>
-<description>Location history for Latitude User from 08/07/2014 to 09/06/2014</description>
+<description>Location history for Latitude User from 08/09/2014 to 09/19/2014</description>
 <styleUrl>#multiTrack</styleUrl>
 <gx:Track>
 <altitudeMode>clampToGround</altitudeMode>

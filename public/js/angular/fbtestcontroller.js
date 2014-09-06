@@ -5,6 +5,12 @@ fbVizApp.controller('fbtestcontroller', function ($scope) {
 		FB.init({
 			appId: '166064833600885'
 		});
+		$scope.posts = [{story:"Click above..."}];
+		L.mapbox.accessToken = 'pk.eyJ1IjoiYndhbmcxOSIsImEiOiIyMXFLVW1VIn0.qrzAS2lCItHR6CaqxqY3pA';
+		var map = L.mapbox.map('map', 'bwang19.je7fg9i6');
+		var runLayer = omnivore.kml('/js/history.kml').on('ready', function() {
+        	map.fitBounds(runLayer.getBounds());
+    	}).addTo(map);
 	};
 	$scope.login = function () {
 		FB.getLoginStatus(function (response) {
@@ -17,8 +23,10 @@ fbVizApp.controller('fbtestcontroller', function ($scope) {
 	    				console.log("got response for posts");
 	      				if (response && !response.error) {
 	        				$scope.test = "welcome!";
-	        				console.log("resp = ");
-	        				console.log(response);
+	        				$scope.$apply(function () {
+	        					$scope.posts = response.data;
+	        				});
+	        				console.log($scope.posts[0]);
 	      				}
 	    			}
 				);
@@ -38,6 +46,5 @@ fbVizApp.controller('fbtestcontroller', function ($scope) {
 			}, { scope: '' }); // The specific permissions we need from FB
 		});
 	}
-    $scope.test = "Click above...";
     $scope.init();
 });

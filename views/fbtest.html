@@ -2,14 +2,22 @@
 <html ng-app="fbVizApp" id="fbVizApp">
 	<head>
 		<title>FBViz</title>
-		<!-- <link type="text/css" rel="stylesheet" href="/css/fbmessage.css"/> -->
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+		<link rel="stylesheet" type="text/css" href="/css/maptest.css"/>
+		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
 		<script src='//connect.facebook.net/en_UK/all.js'></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
 		<script src='/js/angular/fbtestcontroller.js'></script>
 		<script src='/js/fbtest.js'></script>
 	</head>	
 	<body ng-controller="fbtestcontroller">
-		<button ng-click="login()">Login to FB</button>
-		<div>{{test}}</div>
+		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+		<div id="map"></div>
+		<div id="fb">
+			<button ng-click="login()">Login to FB</button>
+			<ul>
+				<li ng-repeat="post in posts">{{post.created_time}} - {{post.story}}</li>
+			</ul>
+		</div>
 	</body>	
 </html>
