@@ -11,7 +11,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
     	$scope.rangeMin = 0;
     	$scope.rangeMax = 1000;
     	var x2js = new X2JS();
-    	$http.get('/js/history.kml').success(function (data) {
+    	$http.get('/assets/history.kml').success(function (data) {
 			$scope.kmlJSON = x2js.xml_str2json(data);
 		});
 		$scope.pathStyle = {
@@ -103,34 +103,34 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		var max = parseInt($scope.rangeMax/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 		var min = parseInt($scope.rangeMin/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 
-		// var secStartDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
-		// var date1 = Date(secStartDate);
+		var secStartDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
+		var date1 = Date(secStartDate);
 		console.log($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
-		// $scope.startDate = date1.toString().substr(4,11);
+		$scope.startDate = date1.toString().substr(4,11);
 
-		// var secEndDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[max]);
-		// var date2 = Date(secEndDate);
-		// $scope.endDate = date2.toString().substr(4,11);
+		var secEndDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[max]);
+		var date2 = Date(secEndDate);
+		$scope.endDate = date2.toString().substr(4,11);
 
-		// console.log(date1);
-		// console.log(secStartDate);
+		console.log(date1);
+		console.log(secStartDate);
 
-		// for (var i=min;i<max;i++) {
-		// 	var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
-		// 	coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
-		// }
-		// L.LineUtil.simplify(coordList);
-		// console.log("changing dat");
+		for (var i=min;i<max;i++) {
+			var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
+			coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
+		}
+		L.LineUtil.simplify(coordList);
+		console.log("changing dat");
 
-		// $scope.path = [{
-		// 	"type": "LineString",
-		// 	"coordinates": coordList
-		// }];
+		$scope.path = [{
+			"type": "LineString",
+			"coordinates": coordList
+		}];
 
-		// $scope.pathLayer = L.geoJson($scope.path, {
-		// 	style: $scope.pathStyle
-		// })
-		// $scope.pathLayer.addTo($scope.map);
+		$scope.pathLayer = L.geoJson($scope.path, {
+			style: $scope.pathStyle
+		})
+		$scope.pathLayer.addTo($scope.map);
 	}
 	
 	var k = 0;
