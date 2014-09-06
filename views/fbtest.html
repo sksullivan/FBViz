@@ -3,6 +3,7 @@
 	<head>
 		<title>FBViz</title>
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="/css/maptest.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/angular-slider.css"/>
 		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
@@ -10,20 +11,29 @@
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
 		<script src='/js/angular/slider.js'></script>
 		<script src='/js/xml2json.js'></script>
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 		<script src='/js/angular/fbtestcontroller.js'></script>
+		<script src='/js/angular/uploadcontroller.js'></script>
 	</head>	
-	<body ng-controller="fbtestcontroller">
-		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
-		<div id="map"></div>
-		<div id="control-bar">
-			<button ng-click="login()">Login to FB</button>
-			<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
-			<div id="dates">{{startDate}} to {{endDate}}</span>
-			<form novalidate class="date-form">
-    			Start Date: <input type="date" ng-model="startRange"/><br/>
-    		 	End Date: <input type="date" ng-model="endRange"/><br/>
-    			<button ng-click="updateDate()">Update</button>
-  			</form>
-		</div>  
+	<body>
+		<div ng-controller="fbtestcontroller">
+			<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+			<div id="map"></div>
+			<div id="control-bar">
+				<button ng-click="login()">Login to FB</button>
+				<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
+				<div id="dates">{{startDate}} to {{endDate}}</span>
+				<form novalidate class="date-form">
+	    			Start Date: <input type="date" ng-model="startRange"/><br/>
+	    		 	End Date: <input type="date" ng-model="endRange"/><br/>
+	    			<button ng-click="updateDate()">Update</button>
+	  			</form>
+			</div>  
+		</div>
+		<div ng-controller="uploadcontroller">
+			<p>Pick a start date: <input type="text" id="sdatepicker"></p>
+			<p>and an end date: <input type="text" id="edatepicker"></p>
+		</div>
 	</body>	
 </html>

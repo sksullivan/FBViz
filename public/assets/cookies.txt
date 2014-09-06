@@ -1,0 +1,20 @@
+# Cookies for domains related to google.com.
+# This content may be pasted into a cookies.txt file and used by wget
+# Example:  wget -x --load-cookies cookies.txt https://maps.google.com/locationhistory/b/0
+#
+.maps.google.com	TRUE	/locationhistory/	FALSE	1473102154	__utma	237271068.264804764.1410030154.1410030154.1410030154.1
+.maps.google.com	TRUE	/locationhistory/	FALSE	1410031954	__utmb	237271068.1.10.1410030154
+.maps.google.com	TRUE	/locationhistory/	FALSE	0	__utmc	237271068
+.maps.google.com	TRUE	/locationhistory/	FALSE	1425798154	__utmz	237271068.1410030154.1.1.utmcsr=accounts.google.com|utmccn=(referral)|utmcmd=referral|utmcct=/ServiceLogin
+maps.google.com	FALSE	/latitude	TRUE	1441566154.841092	UserLocale	en
+.google.com	TRUE	/	FALSE	1473102131.623394	PREF	ID=fa2ad0bd6a608b71:FF=0:TM=1410030131:LM=1410030131:S=GyptqJveZSQWi-Bo
+accounts.google.com	FALSE	/	TRUE	0	GALX	TMLbSas0i3w
+.google.com	TRUE	/	FALSE	1425841352.039922	NID	67=HgB9hqV4uUfQBdP06ZcxaS7bzNbmngE8ahmFx_0Ns5-FPIsvCN8-5P6G5KBvOeVYh__yl8F4B8H_by1LlUYGy2vggsan8Z1kNLLxCvs1UpAsYb-J6NsILKzMKwel1bb7t_gYy3dIPJK5_rs54bPIlx30Fcz6XovK6ba-VUYxm29J0N0CST5kx5w
+.google.com	TRUE	/	FALSE	1473102152.040034	SID	DQAAAAUBAACLFn-rTgGwDjqi-UhYbnTJiNzNNYjx4VrZySpTV8pZj7lbWXtWij_pMPrr8Rnixl-D24Q5zi2xJj7jlKqu36bxrwR7JMqmAp-2JVqfICzn2Mcp61VD6Vi3hgxQ7bHYd-T7S8vlr9sxWOlsdJ4_Zy-yJMnkPMHM63QOPIWQrZdfUHatQM6gjteDli4ri-12Njll151MuyeL3G1ti0fcjzfbnkc3Fx0K-ZtFSxYgFdttcwGdKeiQltnO1SKDEuLlTtj4hKbV7Nfws4EI8pHAc65_st24TZ2wpfDw-I5U-1j-PXRcAV2hWSVbJfE-zAi6TTnUVO_yycRP5G-6ZOGqn3qZ3EEGm2GBrMJ_wRndch93DA
+.google.com	TRUE	/	FALSE	1473102152.040253	HSID	AkSM1zevMgPeo3gO2
+.google.com	TRUE	/	TRUE	1473102152.040353	SSID	AHUwJkb_eLxZGkIdZ
+.google.com	TRUE	/	FALSE	1473102152.040442	APISID	E-q8VoFAHwgodIGs/AE3FQE1BBmjwYppU2
+.google.com	TRUE	/	TRUE	1473102152.040529	SAPISID	ag3a3YoeIOfo-_c4/Aopf-FmJQuw4scQ_1
+accounts.google.com	FALSE	/	TRUE	1473102152.040616	ACCOUNT_CHOOSER	AFx_qI43uZoPeHq0CXJCQW-HZTSXbzX7EWGmLegwJGzrM77gW_0KtSAhUypPnWrc9cP5YQ-LX95X3rtPHjQtOJF6OCmuzaEzx6xBo-F_k7TprBIkQoRRGN6rC9LSNTd5-k3auSbrtzkRxSRA7ydnZ94e5UscXSpTZw
+accounts.google.com	FALSE	/	TRUE	1473102155.228174	LSID	doritos|s.youtube:DQAAAAcBAADKE3TUel8uAqfBRlwh9Sit1f6F4eJnLvihoRqDxQP0ALVfRhpDL7ArKQZwWlK-fflAjscYdWmXYm7AM5cEXGfHYmOvKFOXfxhoPS4ClRXUZs31xveSd_nmX6o3L938zrFGyCJtkg93287zntoD64UlEyp0mlh59afdzbTgtHpBA6j3ju-ODhCHb0wPEnOyeYSiXxp4EvgklzicdiwCY4IkKhk_qTIy5EOvGWRPCQvylQPAQ9bIS8ByJ6EUOOU5ytDkaQ277wCqAkxUc-_hUAKrJVmhwGmUf-Vv1Q6pC4dm4DwDumEQ6-c5lW-cf6ZF1QY6dprUewDCqM-xmPUYjuTc97AqTQ4NTB8FgY1nqGujOQ
+accounts.google.com	FALSE	/	TRUE	1473102161.546206	GAPS	1:sMXOWaRUGa_h3KK8nDSQROQD2uSxpw:aszYd4Hw3gll9Lwj

@@ -1,4 +1,5 @@
-#map { 
+#map {
+	display: none;
 	position: absolute;
 	top: 0;
 	bottom: 30%;
@@ -7,12 +8,14 @@
 }
 
 #control-bar {
+	display: none;
 	position: absolute;
 	top: 70%;
 	width: 100%;
 }
 
 #dates {
+	display: none;
 	width:100%;
 	bottom: 0;
 	text-align: center;
