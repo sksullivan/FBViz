@@ -1,4 +1,4 @@
-/* Basic CSS Reset for now */
+@import url('http://fonts.googleapis.com/css?family=Raleway');
 
 html, body{ 
 	margin:0px; 
@@ -7,6 +7,68 @@ html, body{
 	font-size:100%; 
 }
 
+*{
+	font-family: 'Raleway', 'Arial', 'sans-serif'
+}
+
 body{
+
 	line-height: 1; 
+
+	.container{ 
+		width: 800px;
+		
+		slider{
+			width: 100%;
+		} 
+
+		.full-wrapper{ 
+			width: 100%; 
+
+			.posts{
+
+				background-color: #f5f5f5;
+
+				#time{
+					font-size: 10px 
+				}
+
+				#status{ 
+					font-size: 15px;
+				}
+			}
+		}	
+
+		#fb{ 
+			width: 50%; 
+			margin-left: 25%;
+			margin-right: 25%;
+
+			button{
+				text-align:center;
+				width: 80px; 
+				height: 20px; 
+				padding-top: 5px;
+				padding-bottom: 15px; 
+				font-size: 15px;
+				background-color: #00FFFF;
+				border: 1px solid black; 
+
+				&:hover{ 
+					opacity: 0.7; 
+					cursor:pointer;
+				}
+			}
+		}	
+	}
+}
+
+.header1{ 
+	font-weight: bold; 
+	font-size: 25px;
+	padding: 5px;  
+}
+
+.centered{ 
+	text-align:center; 
 }

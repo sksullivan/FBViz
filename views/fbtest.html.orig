@@ -3,43 +3,86 @@
 	<head>
 		<title>FBViz</title>
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="/css/maptest.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/main.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/angular-slider.css"/>
 		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
 		<script src='//connect.facebook.net/en_UK/all.js'></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
 		<script src='/js/angular/slider.js'></script>
 		<script src='/js/xml2json.js'></script>
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 		<script src='/js/angular/fbtestcontroller.js'></script>
+		<script src='/js/angular/uploadcontroller.js'></script>
 	</head>	
-	<body ng-controller="fbtestcontroller">
 <<<<<<< HEAD
-		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
-		<div id="map"></div>
-		<div id="fb">
-			<button ng-click="login()">Login to FB</button>
-			<button ng-click="test()">test</button>
-			<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
-			<div id="dates">{{startDate}} to {{endDate}}</span>
+	<body>
+		<div ng-controller="fbtestcontroller">
+			<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+			<div id="map"></div>
+			<div id="control-bar">
+				<button ng-click="login()">Login to FB</button>
+				<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
+				<div id="dates">{{startDate}} to {{endDate}}</span>
+				<form novalidate class="date-form">
+	    			Start Date: <input type="date" ng-model="startRange"/><br/>
+	    		 	End Date: <input type="date" ng-model="endRange"/><br/>
+	    			<button ng-click="updateDate()">Update</button>
+	  			</form>
+			</div>  
+		</div>
+		<div ng-controller="uploadcontroller">
+			<p>Pick a start date: <input type="text" id="sdatepicker"></p>
+			<p>and an end date: <input type="text" id="edatepicker"></p>
 		</div>
 =======
-		<button class = "login" ng-click="login()">Login to FB</button>
-		<div>{{test}}</div>
-		<div class = "full-wrapper">
-			<div ng-repeat = "member in dataList track by $index"> 
-				<div ng-repeat = "piece in dataList[$index]">
-					<pre> 
-						{{piece.story}}
-						<br/> 
-						{{piece.created_time}}
-						<hr/>
-					</pre>
+	<body ng-controller="fbtestcontroller">
+		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
+		<div class = "container"> 
+			<div id="map"></div>
+			<div id="control-bar">
+				<h1 class = "centered"> TooMuchAbout.Me </h1> 
+				<div class = "centered" id = "top-buttons">
+					<button ng-click="login()">Log-in</button>
+					<!--<button ng-click="updateRange()">Test</button>-->
 				</div> 
+
+				<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
+				<div id="dates">{{startDate}} - {{endDate}}</span>
 			</div>
-		</div>
+			<div class = "header1 centered">{{test}}</div>
+			<div class = "full-wrapper">
+				<div ng-repeat = "member in dataList track by $index"> 
+					<div ng-repeat = "piece in dataList[$index]">
+						<div class = "posts"> 
+							<span id = "time"> {{piece.created_time}} </span>
+							<br/>
+							<span id = "story"> {{piece.story}} </span> 
+							<hr/>
+						</div>
+					</div> 
+				</div>
+			</div>
+		</div>  
 		<!--<div ng-repeat = "some in otherArr track by $index"> 
 			{{otherArr[$index]}}
 		</div> -->      
->>>>>>> 5c5e5c2c9a8e82b7320cb80076d9a60581caf3a6
+<!--=======
+		<div id="map"></div>
+		<div id="control-bar">
+			<button ng-click="login()">Login to FB</button>
+			<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
+			<div id="dates">{{startDate}} to {{endDate}}</span>
+			<form novalidate class="date-form">
+    			Start Date: <input type="date" ng-model="startRange"/><br/>
+    		 	End Date: <input type="date" ng-model="endRange"/><br/>
+    			<button ng-click="updateDate()">Update</button>
+  			</form>
+		</div>  
+>>>>>>> c2ef3a804448d0d4f9171f9676336bd550cef435 --> 
+>>>>>>> 1316943cafd14e243eaac8e5cf878e1a7c3801dc
 	</body>	
 </html>
