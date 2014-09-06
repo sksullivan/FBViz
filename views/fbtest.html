@@ -21,5 +21,22 @@
 			<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
 			<div id="dates">{{startDate}} to {{endDate}}</span>
 		</div>
+		<button class = "login" ng-click="login()">Login to FB</button>
+		<div>{{test}}</div>
+		<div class = "full-wrapper">
+			<div ng-repeat = "member in dataList track by $index"> 
+				<div ng-repeat = "piece in dataList[$index]">
+					<pre> 
+						{{piece.story}}
+						<br/> 
+						{{piece.created_time}}
+						<hr/>
+					</pre>
+				</div> 
+			</div>
+		</div>
+		<!--<div ng-repeat = "some in otherArr track by $index"> 
+			{{otherArr[$index]}}
+		</div> -->      
 	</body>	
 </html>
