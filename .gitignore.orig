@@ -1,7 +1,11 @@
 # Logs
 logs
 *.log
+<<<<<<< HEAD
 .DS_Store*
+=======
+.DS_Store
+>>>>>>> FETCH_HEAD
 # Runtime data
 pids
 *.pid
