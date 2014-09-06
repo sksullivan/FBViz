@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="fbVizApp" id="fbVizApp">
+	<head>
+		<title>FBViz</title>
+		<!-- <link type="text/css" rel="stylesheet" href="/css/fbmessage.css"/> -->
+		<script src='//connect.facebook.net/en_UK/all.js'></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+		<script src='/js/angular/fbtestcontroller.js'></script>
+		<script src='/js/fbtest.js'></script>
+	</head>	
+	<body ng-controller="fbtestcontroller">
+		<button class = "login" ng-click="login()">Login to FB</button>
+		<div>{{test}}</div>
+		<div class = "full-wrapper">
+			<div ng-repeat = "member in dataList track by $index"> 
+				<div ng-repeat = "piece in dataList[$index]">
+					<pre> 
+						{{piece.story}}
+						<br/> 
+						{{piece.created_time}}
+						<hr/>
+					</pre>
+				</div> 
+			</div>
+		</div>
+		<!--<div ng-repeat = "some in otherArr track by $index"> 
+			{{otherArr[$index]}}
+		</div> -->      
+	</body>	
+</html>

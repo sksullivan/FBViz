@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app="fbVizApp" id="fbVizApp">
+	<head>
+		<title>FBViz</title>
+		<!-- <link type="text/css" rel="stylesheet" href="/css/fbmessage.css"/> -->
+		<script src='//connect.facebook.net/en_UK/all.js'></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+		<script src='/js/angular/fbtestcontroller.js'></script>
+		<script src='/js/fbtest.js'></script>
+	</head>	
+	<body ng-controller="fbtestcontroller">
+		<button ng-click="login()">Login to FB</button>
+		<div>{{test}}</div>
+	</body>	
+</html>

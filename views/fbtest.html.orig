@@ -13,15 +13,17 @@
 		<script src='/js/angular/fbtestcontroller.js'></script>
 	</head>	
 	<body ng-controller="fbtestcontroller">
+<<<<<<< HEAD
 		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
 		<div id="map"></div>
 		<div id="fb">
 			<button ng-click="login()">Login to FB</button>
-			<button ng-click="updateRange()">test</button>
+			<button ng-click="test()">test</button>
 			<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
 			<div id="dates">{{startDate}} to {{endDate}}</span>
 		</div>
-		<!--<button class = "login" ng-click="login()">Login to FB</button>
+=======
+		<button class = "login" ng-click="login()">Login to FB</button>
 		<div>{{test}}</div>
 		<div class = "full-wrapper">
 			<div ng-repeat = "member in dataList track by $index"> 
@@ -34,9 +36,10 @@
 					</pre>
 				</div> 
 			</div>
-		</div>-->
+		</div>
 		<!--<div ng-repeat = "some in otherArr track by $index"> 
 			{{otherArr[$index]}}
 		</div> -->      
+>>>>>>> 5c5e5c2c9a8e82b7320cb80076d9a60581caf3a6
 	</body>	
 </html>
