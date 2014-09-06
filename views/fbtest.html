@@ -20,9 +20,11 @@
 			<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
 			<div id="dates">{{startDate}} to {{endDate}}</span>
 			<form novalidate class="date-form">
-    			Start Date: <input type="date" ng-model="startRange"/><br/>
-    		 	End Date: <input type="date" ng-model="endRange"/><br/>
-    			<button ng-click="updateDate()">Update</button>
+    			Start Date: <input id="startForm" type="date" value="{{startRange}}" ng-model="startRange"/><br/>
+    		 	End Date: <input id="endForm" type="date" ng-model="endRange"/><br/>
+    			<button ng-click="updateDate()">
+    				<a id="kml-download" ng-href="https://maps.google.com/locationhistory/b/0/kml?startTime={{startRange}}&endTime={{endRange}}" target="_blank">Download Location History</a>
+    			</button>
   			</form>
 		</div>  
 	</body>	
