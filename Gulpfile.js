@@ -6,7 +6,7 @@ var sass = require('gulp-sass');
 gulp.task('sass', function(){
 	return gulp.src('public/sass/*.scss')
 				.pipe(sass())
-				.pipe(gulp.dest('public/stylesheets'));
+				.pipe(gulp.dest('public/css'));
 }); 
 
 gulp.task('lint', function(){
