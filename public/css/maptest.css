@@ -1,14 +1,14 @@
 #map { 
 	position: absolute;
 	top: 0;
-	bottom: 30%;
+	bottom: 45%;
 	left: 0;
 	right: 0;
 }
 
 #fb {
 	position: absolute;
-	top: 70%;
+	top: 60%;
 	width: 100%;
 }
 

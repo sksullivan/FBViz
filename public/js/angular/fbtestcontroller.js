@@ -150,6 +150,6 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		}
 	}
 
-    $scope.test = "Click above...";
+    $scope.test = "Click 'log-in' to get started!";
     $scope.init();
 });
