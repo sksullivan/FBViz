@@ -6,5 +6,18 @@ window.onload = function(){
     	maxZoom: 18
 	}).addTo(map);
 
-	omnivore.kml('../public/js/history.kml').addTo(map);
+	var runLayer = omnivore.kml('/js/history.kml')
+    .on('ready', function() {
+        map.fitBounds(runLayer.getBounds());
+
+        // After the 'ready' event fires, the GeoJSON contents are accessible
+        // and you can iterate through layers to bind custom popups.
+        runLayer.eachLayer(function(layer) {
+            // See the `.bindPopup` documentation for full details. This
+            // dataset has a property called `name`: your dataset might not,
+            // so inspect it and customize to taste.
+            layer.bindPopup(layer.feature.properties.name);
+        });
+    })
+    .addTo(map);
 }
