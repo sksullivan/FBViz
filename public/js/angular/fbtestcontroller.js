@@ -24,13 +24,18 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.$watch('rangeMax',function() {
 			$scope.updateRange();
 		});
+		$scope.hideMap = true;
 	};
 
 	$scope.getKML = function() {
 		var x2js = new X2JS();
-    	$http.get('/js/history.kml').success(function (data) {
+    	$http.get('/assets/history.kml').success(function (data) {
+    		console.log(data);
 			$scope.kmlJSON = x2js.xml_str2json(data);
 			$scope.updateRange();
+			$scope.haveData = false;
+		}).error(function () {
+			console.log("404");
 		});
 	}
 
@@ -38,6 +43,10 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.startRange = new Date($scope.startRange).getTime();
 		$scope.endRange = new Date($scope.endRange).getTime();
 		$scope.getKML();
+	}
+
+	$scope.clear = function () {
+		request.post('/clear');
 	}
 
 	$scope.dataList = new Array(5); // this will hold the response later

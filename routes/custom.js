@@ -2,38 +2,31 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var cookie = require('cookies.txt');
+var fs = require('fs-extra');
 
 /* GET users listing. */
-router.get('/fb', function(req, res) {
-	res.render('fbtest');
+router.get('/splash', function(req, res) {
+	try {
+		fs.unlinkSync(__dirname + '/../public/assets/history.kml');
+		console.log('successfully deleted '+__dirname + '/../public/assets/history.kml');
+	} catch (e) {
+		console.log('it wasnt there');
+	}
+	res.render('splash');
 });
 
-router.get('/map', function(req, res) {
-	res.render('maptest');
-});
-
-router.get('/kml', function(req, res) {
-	console.log('running dem jsonCookies');
-	cookie.parse('/assets/cookies.txt', function(jsonCookies) {
-		console.log("try?");
-		console.log(jsonCookies);
-		request.get(
-			{
-				url: 'https://maps.google.com/locationhistory/b/0/kml?startTime=1407470400000&endTime=1410062400000',
-				jar: true,
-				encoding: null,
-				headers: {
-					Cookie:cookie.getCookieString('https://maps.google.com/locationhistory/b/0/kml?startTime=1407470400000&endTime=1410062400000')
-				}
-			},
-			function (error, response, body) {
-				if (!error && response.statusCode == 200) {
-					console.log(body);
-					res.send(body);
-				}
-			}
-		);
-	});
+router.post('/upload', function(req, res) {
+	var fstream;
+	req.pipe(req.busboy);
+	req.busboy.on('file', function (fieldname, file, filename) {
+		console.log("Uploading: " + filename);
+			fstream = fs.createWriteStream(__dirname + '/../public/assets/history.kml');
+			file.pipe(fstream);
+			fstream.on('close', function () {
+				console.log("Upload Finished of " + filename);              
+				res.render('fbtest');
+			});
+		});
 });
 
 module.exports = router;
