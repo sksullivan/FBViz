@@ -10,7 +10,16 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http) {
 		$scope.map = L.mapbox.map('map', 'bwang19.je7fg9i6');
 		// $scope.runLayer = omnivore.kml('/js/history.kml');
     	$scope.rangeMin = 0;
-    	$scope.rangeMax = 100;
+    	$scope.rangeMax = 1000;
+    	var x2js = new X2JS();
+    	$http.get('/js/history.kml').success(function (data) {
+			$scope.kmlJSON = x2js.xml_str2json(data);
+		});
+		$scope.pathStyle = {
+			"color": "#ff7800",
+			"weight": 5,
+			"opacity": 0.65
+		};
 	};
 	$scope.login = function () {
 		FB.getLoginStatus(function (response) {
@@ -47,39 +56,48 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http) {
 		});
 	}
 	$scope.$watch('rangeMin',function() {
-
+		$scope.test();
+	});
+	$scope.$watch('rangeMax',function() {
+		$scope.test();
 	});
 	$scope.test = function () {
-		var x2js = new X2JS();
-		if (x2js == undefined) {
-			return;
+		if ($scope.pathLayer != undefined) {
+			console.log("removing");
+			$scope.map.removeLayer($scope.pathLayer);
 		}
-		$http.get('/js/history.kml').success(function (data) {
-			$scope.kmlJSON = x2js.xml_str2json(data);
 
-			var coordList = [];
-			var dataPoints = 100;
-			for (var i=0;i<dataPoints;i++) {
-				var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
-				coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
-			}
-			console.log(coordList);
+		var coordList = [];
+		var max = parseInt($scope.rangeMax/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
+		var min = parseInt($scope.rangeMin/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 
-			var myLines = [{
-				"type": "LineString",
-				"coordinates": coordList
-			}];
+		var secStartDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
+		var date1 = Date(secStartDate);
+		$scope.startDate = date1.toString().substr(4,11);
 
-			var myStyle = {
-				"color": "#ff7800",
-				"weight": 5,
-				"opacity": 0.65
-			};
+		var secEndDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[max]);
+		var date2 = Date(secEndDate);
+		$scope.endDate = date2.toString().substr(4,11);
 
-			L.geoJson(myLines, {
-				style: myStyle
-			}).addTo($scope.map);
-		});
+		console.log(date1);
+		console.log(secStartDate);
+
+		for (var i=min;i<max;i++) {
+			var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
+			coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
+		}
+		L.LineUtil.simplify(coordList);
+		console.log("changing dat");
+
+		$scope.path = [{
+			"type": "LineString",
+			"coordinates": coordList
+		}];
+
+		$scope.pathLayer = L.geoJson($scope.path, {
+			style: $scope.pathStyle
+		})
+		$scope.pathLayer.addTo($scope.map);
 	}
     $scope.init();
 });

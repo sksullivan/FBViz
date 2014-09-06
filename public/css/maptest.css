@@ -11,3 +11,9 @@
 	top: 70%;
 	width: 100%;
 }
+
+#dates {
+	width:100%;
+	bottom: 0;
+	text-align: center;
+}
