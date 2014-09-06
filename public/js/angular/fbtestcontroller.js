@@ -10,11 +10,9 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.map = L.mapbox.map('map', 'bwang19.je7fg9i6');
     	$scope.rangeMin = 0;
     	$scope.rangeMax = 1000;
-    	var x2js = new X2JS();
-    	$http.get('/js/history.kml').success(function (data) {
-			$scope.kmlJSON = x2js.xml_str2json(data);
-			$scope.updateRange();
-		});
+    	$scope.startRange = new Date().getTime(); //default range, 1 day
+    	$scope.endRange = $scope.startRange - 86400000;
+    	$scope.getKML();
 		$scope.pathStyle = {
 			"color": "#ff7800",
 			"weight": 5,
@@ -23,11 +21,24 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.$watch('rangeMin',function() {
 			$scope.updateRange();
 		});
-
 		$scope.$watch('rangeMax',function() {
 			$scope.updateRange();
 		});
 	};
+
+	$scope.getKML = function() {
+		var x2js = new X2JS();
+    	$http.get('/js/history.kml').success(function (data) {
+			$scope.kmlJSON = x2js.xml_str2json(data);
+			$scope.updateRange();
+		});
+	}
+
+	$scope.updateDate = function() {
+		$scope.startRange = new Date($scope.startRange).getTime();
+		$scope.endRange = new Date($scope.endRange).getTime();
+		$scope.getKML();
+	}
 
 	$scope.dataList = new Array(5); // this will hold the response later
 
