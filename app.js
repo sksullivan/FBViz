@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var busboy = require('connect-busboy'); //middleware for form/file upload
+var fs = require('fs-extra');
 
 var routes = require('./routes/index');
 var custom = require('./routes/custom');

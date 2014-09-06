@@ -1,18 +1,21 @@
-#map { 
+#map {
+	display: none;
 	position: absolute;
 	top: 0;
-	bottom: 30%;
+	bottom: 45%;
 	left: 0;
 	right: 0;
 }
 
 #control-bar {
+	display: none;
 	position: absolute;
-	top: 70%;
+	top: 60%;
 	width: 100%;
 }
 
 #dates {
+	display: none;
 	width:100%;
 	bottom: 0;
 	text-align: center;
