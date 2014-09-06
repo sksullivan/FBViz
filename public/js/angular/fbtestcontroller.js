@@ -8,24 +8,27 @@ fbVizApp.controller('fbtestcontroller', function ($scope) {
 	};
 	$scope.login = function () {
 		FB.getLoginStatus(function (response) {
-			console.log(response);
+			console.log("getting status");
 			if (response.status === 'connected') {
-				id = response.authResponse.userID;
-				access_token = response.authResponse.accessToken;
+				console.log("status was connected");
 				FB.api(
-	    			"/me",
+	    			"/me/posts",
 	    			function (response) {
+	    				console.log("got response for posts");
 	      				if (response && !response.error) {
-	        				$scope.test = "welcome "+response.first_name;
+	        				$scope.test = "welcome!";
+	        				console.log("resp = ");
+	        				console.log(response);
 	      				}
 	    			}
 				);
 				return;
 			} else {
-				console.log('not');
+				console.log('status was not connected');
 			}
 			access_token = "";
 			FB.login(function (response) {
+				console.log("loggin in manually");
 				if (response.authResponse) {
 					console.log(FB.getAuthResponse());
 					access_token = FB.getAuthResponse()['accessToken'];
