@@ -1,0 +1,62 @@
+div.date {
+	height: 60px;
+	width: 60px;
+}
+
+div.upload {
+	height: 60px;
+	width: 60px;
+}
+
+div.fb {
+	height: 60px;
+	width: 60px;
+}
+
+div.check {
+	background-image: url('/assets/checklight.png');
+	border: 25px solid;
+	background-size: 60px 60px;
+	background-repeat: no-repeat;
+	background-position: center;
+    border-radius: 25px;
+    border-color: #99D6AD;
+	vertical-align: center;
+	margin: 75px;
+	padding: 25px;
+}
+
+div.x {
+	background-image: url('/assets/xlight.png');
+	background-size: 60px 60px;
+	background-repeat: no-repeat;
+	background-position: center;
+	border: 25px solid;
+    border-radius: 25px;
+    border-color: #D6D6D6;
+	vertical-align: center;
+	margin: 75px;
+	padding: 25px;
+}
+
+form {
+	margin-left: 200px;
+	margin-top: 25px;
+	width: 300px;
+	border-style: none;
+	background-color: #D6D6D6;
+}
+
+input {
+	width: 200px;
+	padding: 5px;
+	margin: 5px;
+}
+
+a {
+	margin: 10px;
+}
+
+button {
+	margin: 10px;
+}
