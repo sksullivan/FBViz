@@ -88,7 +88,9 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 	}
 
 	$scope.addPostAnnotations = function () {
-		
+		$http.get('/c/getFB').success(function (data) {
+			console.log(data);
+		});
 	};
 
     $scope.test = "Click 'log-in' to get started!";
