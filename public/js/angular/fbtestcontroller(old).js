@@ -10,11 +10,9 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.map = L.mapbox.map('map', 'bwang19.je7fg9i6');
     	$scope.rangeMin = 0;
     	$scope.rangeMax = 1000;
-    	var x2js = new X2JS();
-    	$http.get('/assets/history.kml').success(function (data) {
-			$scope.kmlJSON = x2js.xml_str2json(data);
-			$scope.updateRange();
-		});
+    	$scope.endRange = new Date();
+    	$scope.startRange = new Date(); //default range, 1 day
+    	$scope.getKML();
 		$scope.pathStyle = {
 			"color": "#ff7800",
 			"weight": 5,
@@ -23,11 +21,33 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.$watch('rangeMin',function() {
 			$scope.updateRange();
 		});
-
 		$scope.$watch('rangeMax',function() {
 			$scope.updateRange();
 		});
+		$scope.hideMap = true;
 	};
+
+	$scope.getKML = function() {
+		var x2js = new X2JS();
+    	$http.get('/assets/history.kml').success(function (data) {
+    		console.log(data);
+			$scope.kmlJSON = x2js.xml_str2json(data);
+			$scope.updateRange();
+			$scope.haveData = false;
+		}).error(function () {
+			console.log("404");
+		});
+	}
+
+	$scope.updateDate = function() {
+		$scope.startRange = new Date($scope.startRange).getTime();
+		$scope.endRange = new Date($scope.endRange).getTime();
+		$scope.getKML();
+	}
+
+	$scope.clear = function () {
+		request.post('/clear');
+	}
 
 	$scope.dataList = new Array(5); // this will hold the response later
 
@@ -103,33 +123,14 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		var max = parseInt($scope.rangeMax/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 		var min = parseInt($scope.rangeMin/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 
-		//head 
-		var secStartDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
-		var date1 = Date(secStartDate);
-		console.log($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
-		$scope.startDate = date1.toString().substr(4,11);
-
-		var secEndDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[max]);
-		var date2 = Date(secEndDate);
-		$scope.endDate = date2.toString().substr(4,11);
-
-		console.log(date1);
-		console.log(secStartDate);
-
-		//get read of this later 
-		//$scope.startDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[min]).substr(0,10);
-		//$scope.endDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[max-1]).substr(0,10);
-
+		$scope.startDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[min]).substr(0,10);
+		$scope.endDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[max-1]).substr(0,10);
 
 		for (var i=min;i<max;i++) {
 			var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
 			coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
 		}
 		L.LineUtil.simplify(coordList);
-		//<<<<<<< HEAD
-		console.log("changing dat");
-		//=======
-		//>>>>>>> 8d67c4185b247e8bb49db6dd0aa27b3facc18eb0
 
 		$scope.path = [{
 			"type": "LineString",
@@ -152,6 +153,6 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		}
 	}
 
-    $scope.test = "Click above...";
+    $scope.test = "Click 'log-in' to get started!";
     $scope.init();
 });
