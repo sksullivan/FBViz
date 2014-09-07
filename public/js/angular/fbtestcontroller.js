@@ -40,7 +40,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 	}
 
 	$scope.clear = function () {
-		request.post('/clear');
+		location.href = "/c/splash";
 	}
 
 	$scope.dataSetSize;
@@ -106,6 +106,6 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		});
 	};
 
-    $scope.test = "Click 'log-in' to get started!";
+    $scope.test = "Scroll with the slider below to view your data!";
     $scope.init();
 });

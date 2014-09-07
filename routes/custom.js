@@ -17,6 +17,10 @@ router.get('/splash', function(req, res) {
 	res.render('splash');
 });
 
+router.get('/fbtest', function(req, res){
+	res.render('fbtest');
+})
+
 router.post('/upload', function(req, res) {
 	var fstream;
 	req.pipe(req.busboy);
