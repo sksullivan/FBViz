@@ -25,12 +25,12 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			$scope.updateRange();
 		});
 		$scope.hideMap = true;
+		$scope.addPostAnnotations();
 	};
 
 	$scope.getKML = function() {
 		var x2js = new X2JS();
     	$http.get('/assets/history.kml').success(function (data) {
-    		console.log(data);
 			$scope.kmlJSON = x2js.xml_str2json(data);
 			$scope.updateRange();
 			$scope.haveData = false;
@@ -82,14 +82,27 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 
 		$scope.pathLayer = L.geoJson($scope.path, {
 			style: $scope.pathStyle
-		})
+		});
 		$scope.pathLayer.addTo($scope.map);
 		$scope.map.fitBounds($scope.pathLayer.getBounds());
 	}
 
+	/*$scope.refineArray = function (array) {
+		ret = [];
+
+	}*/
+
 	$scope.addPostAnnotations = function () {
 		$http.get('/c/getFB').success(function (data) {
 			console.log(data);
+			$scope.markers = [];
+			for(var i=0;i<data.length;i++) {
+				for(var j=0;j<data[i].length;j++) {
+					var marker = L.marker([51.5, -0.09]);
+					$scope.markers.push(marker);
+					marker.addTo($scope.map);
+				}
+			}
 		});
 	};
 

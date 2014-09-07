@@ -36,7 +36,8 @@ router.post('/postFB', function(req, res) {
 	res.send("bueno");
 });
 
-router.post('/getFB', function(req, res) {
+router.get('/getFB', function(req, res) {
+	console.log('doin it');
 	res.send(data);
 });
 
