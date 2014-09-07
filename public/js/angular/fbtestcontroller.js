@@ -130,7 +130,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
 			coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
 		}
-		L.LineUtil.simplify(coordList);
+		coordList = L.LineUtil.simplify(coordList);
 
 		$scope.path = [{
 			"type": "LineString",
@@ -141,6 +141,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			style: $scope.pathStyle
 		})
 		$scope.pathLayer.addTo($scope.map);
+		$scope.map.fitBounds($scope.pathLayer.getBounds());
 	}
 	
 	var k = 0;
@@ -152,6 +153,10 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			}
 		}
 	}
+
+	$scope.addPostAnnotations = function () {
+
+	};
 
     $scope.test = "Click 'log-in' to get started!";
     $scope.init();
