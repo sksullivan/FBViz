@@ -34,10 +34,8 @@ fbVizApp.controller('splashctl', function ($scope, $http) {
 	        				console.log($scope.tempDataHolder.data);
 	        				var reqs = 5;
 	        				callback = function () {
-	        					console.log("penis");
 	        					$http.post('/c/postFB', {data: $scope.dataList}).success(function (data) {
 	        						$scope.checks[2] = "check";
-	        						console.log("DONE")
 	        						console.log(data);
 	        					});
 	        				}

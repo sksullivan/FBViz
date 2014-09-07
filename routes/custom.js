@@ -36,4 +36,8 @@ router.post('/postFB', function(req, res) {
 	res.send("bueno");
 });
 
+router.post('/getFB', function(req, res) {
+	res.send(data);
+});
+
 module.exports = router;
