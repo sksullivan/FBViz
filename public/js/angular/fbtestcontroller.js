@@ -44,7 +44,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		location.href = "/c/splash";
 	}
 
-	$scope.play = function () {
+	$scope.overview = function () {
 		if($scope.playing==true){
 			$scope.playing = false;
 			return;
@@ -65,11 +65,33 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
   				}
   				$scope.rangeMax++;  
   				$scope.rangeMax++;  
-  				$scope.rangeMax++;  
 				$scope.updateRange();
 				loop(); 
 				return;
   			}, 30);
+		})();
+	}
+
+	$scope.follow = function () {
+		if($scope.playing==true){
+			$scope.playing = false;
+			return;
+		}
+		$scope.playing = false;
+		$scope.rangeMin = 0;
+		$scope.rangeMax = 10;
+		(function loop () {          
+  			setTimeout(function () {   
+  		  		if($scope.rangeMax>=1000 || $scope.playing == true){	
+  		  			$scope.playing = false;
+			        return;
+  				}
+  				$scope.rangeMax++;  
+  				$scope.rangeMin++;  
+				$scope.updateRange();
+				loop(); 
+				return;
+  			},400);
 		})();
 	}
 
