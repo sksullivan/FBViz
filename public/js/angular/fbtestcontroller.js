@@ -11,7 +11,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
     	$scope.rangeMin = 0;
     	$scope.rangeMax = 1000;
     	$scope.endRange = new Date();
-    	$scope.startRange = new Date(); //default range, 1 day
+    	$scope.startRange = new Date();
     	$scope.getKML();
 		$scope.pathStyle = {
 			"color": "#ff7800",
@@ -39,17 +39,9 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		});
 	}
 
-	$scope.updateDate = function() {
-		$scope.startRange = new Date($scope.startRange).getTime();
-		$scope.endRange = new Date($scope.endRange).getTime();
-		$scope.getKML();
-	}
-
 	$scope.clear = function () {
 		request.post('/clear');
 	}
-
-	$scope.dataList = new Array(5); // this will hold the response later
 
 	$scope.dataSetSize;
 
@@ -61,55 +53,6 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 	$scope.getCollection = function (num) { 
 		return new Array(num);
 	};
-
-	$scope.login = function () {
-		FB.getLoginStatus(function (response) {
-			console.log("getting status");
-			if (response.status === 'connected') {
-				console.log("status was connected");
-				FB.api(
-	    			"/me/posts",
-	    			function (response) {
-	    				console.log("got response for posts");
-	      				if (response && !response.error) {
-	        				$scope.test = "welcome!";
-
-	        				$scope.tempDataHolder = response; 
-	        				console.log($scope.tempDataHolder.data);
-	        				for(var i = 0; i < $scope.dataList.length; i++){
-	        					$scope.dataList[i] = $scope.tempDataHolder.data; 
-	        					console.log($scope.dataList[i]); 
-	        					//$http.get($scope.tempDataHolder.paging.next, function(data){
-	        					//	;
-	        					//yay we're good now
-	        					$http.get($scope.tempDataHolder.paging.next)
-	        						.success(function (data) {
-	        							$scope.tempDataHolder = data; 
-	        							console.log($scope.tempDataHolder);
-	        						}); 
-	        				}
-	        				$scope.dataSetSize = $scope.dataList[0].length;
-	        				$scope.updateTimes();
-	        				angular.element(document.querySelector('.login' )).text("Posts were retrieved!");
-	      				}
-	    			}
-				);
-				return;
-			} else {
-				console.log('status was not connected');
-			}
-			FB.login(function (response) {
-				console.log("loggin in manually");
-				if (response.authResponse) {
-					var myEl = angular.element(document.querySelector('.login' )).text("Logged in! Now, get posts");
-					console.log(FB.getAuthResponse());
-					access_token = FB.getAuthResponse()['accessToken'];
-				} else {
-					console.log('FB LOGIN ERROR: User cancelled login or did not fully authorize.');
-				}
-			}, { scope: 'read_stream' }); // The specific permissions we need from FB
-		});
-	}
 
 	$scope.updateRange = function () {
 		if ($scope.kmlJSON == undefined) {
@@ -143,19 +86,9 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		$scope.pathLayer.addTo($scope.map);
 		$scope.map.fitBounds($scope.pathLayer.getBounds());
 	}
-	
-	var k = 0;
-	//this is honestly the ugliest way to do this, but whatever
-	$scope.updateTimes = function() {
-		for(var i = 0; i < $scope.dataList.length; i++) {
-			for(var j = 0; j < $scope.dataList[i].length; j++) {
-				$scope.dataList[i][j].created_time = (new Date($scope.dataList[i][j].created_time)).getTime();
-			}
-		}
-	}
 
 	$scope.addPostAnnotations = function () {
-
+		
 	};
 
     $scope.test = "Click 'log-in' to get started!";

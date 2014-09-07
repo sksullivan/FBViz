@@ -103,7 +103,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		var max = parseInt($scope.rangeMax/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 		var min = parseInt($scope.rangeMin/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 
-<<<<<<< HEAD
+		//head 
 		var secStartDate = Date.parse($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
 		var date1 = Date(secStartDate);
 		console.log($scope.kmlJSON.kml.Document.Placemark.Track.when[min]);
@@ -115,20 +115,25 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 
 		console.log(date1);
 		console.log(secStartDate);
-=======
-		$scope.startDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[min]).substr(0,10);
-		$scope.endDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[max-1]).substr(0,10);
->>>>>>> 8d67c4185b247e8bb49db6dd0aa27b3facc18eb0
+
+		//get read of this later 
+		//$scope.startDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[min]).substr(0,10);
+		//$scope.endDate = ($scope.kmlJSON.kml.Document.Placemark.Track.when[max-1]).substr(0,10);
+
 
 		for (var i=min;i<max;i++) {
 			var coord = $scope.kmlJSON.kml.Document.Placemark.Track.coord[i].__text.split(' ')
 			coordList.push([parseFloat(coord[0]), parseFloat(coord[1])]);
 		}
-		L.LineUtil.simplify(coordList);
 <<<<<<< HEAD
-		console.log("changing dat");
+		coordList = L.LineUtil.simplify(coordList);
 =======
->>>>>>> 8d67c4185b247e8bb49db6dd0aa27b3facc18eb0
+		L.LineUtil.simplify(coordList);
+		//<<<<<<< HEAD
+		console.log("changing dat");
+		//=======
+		//>>>>>>> 8d67c4185b247e8bb49db6dd0aa27b3facc18eb0
+>>>>>>> 285bc1a619a1aafd2190296a433858dab53c953b
 
 		$scope.path = [{
 			"type": "LineString",
@@ -139,6 +144,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			style: $scope.pathStyle
 		})
 		$scope.pathLayer.addTo($scope.map);
+		$scope.map.fitBounds($scope.pathLayer.getBounds());
 	}
 	
 	var k = 0;
@@ -151,6 +157,14 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		}
 	}
 
+<<<<<<< HEAD
+	$scope.addPostAnnotations = function () {
+
+	};
+
+    $scope.test = "Click 'log-in' to get started!";
+=======
     $scope.test = "Click above...";
+>>>>>>> 285bc1a619a1aafd2190296a433858dab53c953b
     $scope.init();
 });

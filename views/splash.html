@@ -2,56 +2,32 @@
 <html ng-app="fbVizApp" id="fbVizApp">
 	<head>
 		<title>FBViz</title>
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-		<link rel="stylesheet" type="text/css" href="/css/main.css"/>
-		<link rel="stylesheet" type="text/css" href="/css/angular-slider.css"/>
-		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
+		<link rel="stylesheet" type="text/css" href="/css/splash.css"/>
 		<script src='//connect.facebook.net/en_UK/all.js'></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-		<script src='/js/angular/slider.js'></script>
 		<script src='/js/xml2json.js'></script>
-		<script src='/js/angular/fbtestcontroller.js'></script>
+		<script src='/js/angular/splashctl.js'></script>
 	</head>	
-	<body ng-controller="fbtestcontroller">
-		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
-
+	<body ng-controller="splashctl">
 		<div class="container">
-		<form novalidate class="date-form">
-		Pick dates and click download:<br>
-    				Start Date: <input id="startForm" type="date" value="{{startRange}}" ng-model="startRange"/><br/>
-    		 		End Date: <input id="endForm" type="date" ng-model="endRange"/><br/>
-    				<button ng-click="updateDate()">
-    					<a id="kml-download" ng-href="https://maps.google.com/locationhistory/b/0/kml?startTime={{startRange}}&endTime={{endRange}}" target="_blank">Download Location History</a>
-    				</button>
-  				</form>
-			<div id="map" style="display: none;"></div>
-			<div id="control-bar">
-				<h1 class = "centered"> TooMuchAbout.Me </h1> 
-				<div class = "centered" id = "top-buttons">
-					<button ng-click="login()">Log-in</button>
-				</div> 
-
-				<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax" style="display: none;"></slider>
-				
-			</div>
-			<div class = "header1 centered">{{test}}</div>
-			<div class = "full-wrapper">
-				<div ng-repeat = "member in dataList track by $index"> 
-					<div ng-repeat = "piece in dataList[$index]">
-						<div class = "posts"> 
-							<span id = "time"> {{piece.created_time}} </span>
-							<br/>
-							<span id = "story"> {{piece.story}} </span> 
-							<hr/>
-						</div>
-					</div> 
-				</div>
-				<form method='post' action='upload' enctype="multipart/form-data">
-        		<input type='file' name='fileUploaded'>
-        		<input type='submit'>
-        		</form>
-        		<button ng-click="clear()">Reset</button>
-			</div>
+			<div class="date" ng-class="checks[0]">
+				<form novalidate>
+		    		<input id="startForm" type="date" ng-click="updateDate()" ng-model="startRange"/><br/>
+		    		<input id="endForm" type="date" ng-click="updateDate()" ng-model="endRange"/><br/>
+		    		<a id="kml-download" ng-click="download()" ng-href="https://maps.google.com/locationhistory/b/0/kml?startTime={{startSecs}}&endTime={{endSecs}}" target="_self">Download KML</a>
+		  		</form>
+		  	</div>
+		    <div class="fb" ng-class="checks[2]">
+		    	<form>
+		    		<button ng-click="login()">Login to FB</button>
+		    	</form>
+		    </div>
+		    <div class="upload" ng-class="checks[1]">
+				<form class="upload" method='post' action='upload' enctype="multipart/form-data">
+		    		<input type='file' ng-click="upload()" name='fileUploaded'>
+		    		<button ng-hide="go">submit</button>
+		    	</form>
+		    </div>
 		</div>
 	</body>	
 </html>

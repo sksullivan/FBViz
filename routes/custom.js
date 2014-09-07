@@ -4,6 +4,8 @@ var request = require('request');
 var cookie = require('cookies.txt');
 var fs = require('fs-extra');
 
+var data = [];
+
 /* GET users listing. */
 router.get('/splash', function(req, res) {
 	try {
@@ -27,6 +29,11 @@ router.post('/upload', function(req, res) {
 				res.render('fbtest');
 			});
 		});
+});
+
+router.post('/postFB', function(req, res) {
+	data = req.body.data
+	res.send("bueno");
 });
 
 module.exports = router;

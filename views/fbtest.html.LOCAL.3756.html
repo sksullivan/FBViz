@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="fbVizApp" id="fbVizApp">
+	<head>
+		<title>FBViz</title>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+		<link rel="stylesheet" type="text/css" href="/css/main.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/angular-slider.css"/>
+		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
+		<script src='//connect.facebook.net/en_UK/all.js'></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+		<script src='/js/angular/slider.js'></script>
+		<script src='/js/xml2json.js'></script>
+		<script src='/js/angular/fbtestcontroller.js'></script>
+	</head>	
+	<body ng-controller="fbtestcontroller">
+		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+		<div class="container"> 
+			<div id="map"></div>
+			<div id="control-bar">
+				<h1 class = "centered"> TooMuchAbout.Me </h1> 
+				<div class = "centered" id = "top-buttons">
+					<button ng-click="login()">Log-in</button>
+				</div>
+				<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
+				<div id="dates">{{startDate}} - {{endDate}}</span>
+			</div>
+			<div class = "header1 centered">{{test}}</div>
+			<div class = "full-wrapper">
+				<div ng-repeat = "member in dataList track by $index"> 
+					<div ng-repeat = "piece in dataList[$index]">
+						<div class = "posts"> 
+							<span id = "time"> {{piece.created_time}} </span>
+							<br/>
+							<span id = "story"> {{piece.story}} </span> 
+							<hr/>
+						</div>
+					</div> 
+				</div>
+        		<button ng-click="clear()">Reset</button>
+			</div>
+		</div>
+	</body>	
+</html>
