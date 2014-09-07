@@ -2,8 +2,6 @@ var fbVizApp = angular.module('fbVizApp',[]);
 
 fbVizApp.controller('splashctl', function ($scope, $http) {
 	$scope.init = function () {
-		$scope.checks[2] = "check";
-
 		FB.init({
 			appId: '166064833600885'
 		});
@@ -12,7 +10,7 @@ fbVizApp.controller('splashctl', function ($scope, $http) {
 		$scope.go = true;
 	};
 
-	$scope.dataList = new Array(2); // this will hold the response later
+	$scope.dataList = new Array(2);
 
 	$scope.updateTimes = function() {
 		for(var i = 0; i < $scope.dataList.length; i++) {
@@ -89,6 +87,7 @@ fbVizApp.controller('splashctl', function ($scope, $http) {
 
 	$scope.upload = function () {
 		$scope.go = false;
+		$scope.checks[0] = "check";
 	}
 	$scope.submit = function () {
 		$scope.checks[1] = "check";

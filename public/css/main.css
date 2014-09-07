@@ -28,7 +28,8 @@ body {
       margin-right: 25%; }
       body .container #control-bar button {
         text-align: center;
-        margin: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
         padding-top: 5px;
         padding: 9px 18px;
         font-size: 20px;
@@ -48,8 +49,14 @@ body {
 
 .header1 {
   font-weight: bold;
-  font-size: 25px;
-  padding: 5px; }
+  font-size: 20px;
+  padding-bottom: 30px;}
+
+.title{
+  font-size: 40px;
+  margin: 15px; 
+  margin-top: 30px;
+}
 
 .centered {
   text-align: center; }
@@ -64,14 +71,14 @@ slider{
 #map { 
   position: absolute;
   top: 0;
-  bottom: 45%;
+  bottom: 35%;
   left: 0;
   right: 0;
 }
 
 #control-bar {
   position: absolute;
-  top: 60%;
+  top: 65%;
   width: 100%;
 }
 

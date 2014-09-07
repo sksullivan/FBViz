@@ -1,62 +1,91 @@
-div.date {
-	height: 60px;
-	width: 60px;
+* {
+  	font-family: 'Raleway', 'Arial', 'sans-serif'; 
 }
 
-div.upload {
-	height: 60px;
-	width: 60px;
+h1{
+	font-size: 70px;
+	text-align: center;
+	margin-left: auto;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+h2{
+	text-align: center;
+	margin-left: auto;
+	margin-top: 50px;
 }
 
-div.fb {
-	height: 60px;
-	width: 60px;
+div.date,div.upload,div.fb{
+	height: 35px;
+	width: 35px;
 }
 
-div.check {
-	background-image: url('/assets/checklight.png');
+.wrapper {
+	width:100%;
+	text-align: center;
+	overflow: auto;
+	margin: 0 auto;
+}
+
+div.check,div.x {
 	border: 25px solid;
 	background-size: 60px 60px;
 	background-repeat: no-repeat;
 	background-position: center;
     border-radius: 25px;
-    border-color: #99D6AD;
 	vertical-align: center;
-	margin: 75px;
+	margin: 20px;
+	margin-left: 30%;	
 	padding: 25px;
+	float:left;
 }
 
 div.x {
 	background-image: url('/assets/xlight.png');
-	background-size: 60px 60px;
-	background-repeat: no-repeat;
-	background-position: center;
-	border: 25px solid;
-    border-radius: 25px;
-    border-color: #D6D6D6;
-	vertical-align: center;
-	margin: 75px;
-	padding: 25px;
+	border-color: #D6D6D6;
+}
+div.check {
+	background-image: url('/assets/checklight.png');
+	border-color: #99D6AD;
 }
 
 form {
-	margin-left: 200px;
-	margin-top: 25px;
 	width: 300px;
+	height: 100%;
 	border-style: none;
-	background-color: #D6D6D6;
+	font-size: 20px;
+	background-color: #3071a9;
+    border-radius: 10px;
+    border-color: #285e8e;
+    color: white;
+	padding: 15px;
+	float:left;
+	margin:20px;
+}
+
+#startForm,#endForm,#fileForm{
+	width:200px;
 }
 
 input {
-	width: 200px;
-	padding: 5px;
-	margin: 5px;
+	padding: 14px;
+	margin: 8px;
+	font-size: 15px;
 }
 
 a {
-	margin: 10px;
+	color: white;
+	text-decoration: underline;
 }
 
-button {
-	margin: 10px;
+#fileForm{
+	font-size: 15px;
+}
+button{
+	width:100%;
+	font-size: 20px;
+	color: white;
+	background-color: #3071a9;
+    border:none;
+    text-decoration: underline;
 }

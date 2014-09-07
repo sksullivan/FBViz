@@ -45,7 +45,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 	}
 
 	$scope.play = function () {
-		if($scope.playing){
+		if($scope.playing==true){
 			$scope.playing = false;
 			return;
 		}
@@ -69,7 +69,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 				$scope.updateRange();
 				loop(); 
 				return;
-  			}, 40);
+  			}, 30);
 		})();
 	}
 
