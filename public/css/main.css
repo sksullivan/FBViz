@@ -41,6 +41,10 @@ body {
           opacity: 0.7;
           cursor: pointer; }
 
+#play{
+  background-image: url('/assets/play.png');
+}
+
 .header1 {
   font-weight: bold;
   font-size: 25px;

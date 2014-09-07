@@ -26,6 +26,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		});
 		$scope.hideMap = true;
 		$scope.addPostAnnotations();
+		$scope.playing = false;
 	};
 
 	$scope.getKML = function() {
@@ -41,6 +42,26 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 
 	$scope.clear = function () {
 		location.href = "/c/splash";
+	}
+
+	$scope.play = function () {
+		$scope.playing = true;
+		$scope.rangeMin = 0;
+		$scope.rangeMax = 1;
+		loop();
+		function loop () {          
+  			setTimeout(function () {   
+  		  		if($scope.rangeMax<1000){	
+			        $scope.rangeMax++; 
+			        console.log($scope.rangeMax);          
+					$scope.updateRange();
+					loop(); 
+  				}
+  				else{
+  					$scope.playing = false;
+  				}
+  			}, 30)
+		}
 	}
 
 	$scope.dataSetSize;
@@ -84,7 +105,10 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			style: $scope.pathStyle
 		});
 		$scope.pathLayer.addTo($scope.map);
-		$scope.map.fitBounds($scope.pathLayer.getBounds());
+
+		if($scope.playing == false){
+			$scope.map.fitBounds($scope.pathLayer.getBounds());
+		}
 	}
 
 	/*$scope.refineArray = function (array) {

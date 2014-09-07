@@ -2,11 +2,13 @@ var fbVizApp = angular.module('fbVizApp',[]);
 
 fbVizApp.controller('splashctl', function ($scope, $http) {
 	$scope.init = function () {
+		$scope.checks[2] = "check";
+
 		FB.init({
 			appId: '166064833600885'
 		});
-		$scope.startRange = new Date();
-		$scope.endRange = new Date();
+		$scope.startRange;
+		$scope.endRange;
 		$scope.go = true;
 	};
 
@@ -79,6 +81,7 @@ fbVizApp.controller('splashctl', function ($scope, $http) {
 	}
 
 	$scope.download = function () {
+		$scope.updateDate();
 		$scope.checks[0] = "check";
 	}
 

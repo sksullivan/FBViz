@@ -12,8 +12,8 @@
 		<div class="container">
 			<div class="date" ng-class="checks[0]">
 				<form novalidate>
-		    		<input id="startForm" type="date" ng-click="updateDate()" ng-model="startRange"/><br/>
-		    		<input id="endForm" type="date" ng-click="updateDate()" ng-model="endRange"/><br/>
+		    		<input id="startForm" type="date" ng-model="startRange"/><br/>
+		    		<input id="endForm" type="date" ng-model="endRange"/><br/>
 		    		<a id="kml-download" ng-click="download()" ng-href="https://maps.google.com/locationhistory/b/0/kml?startTime={{startSecs}}&endTime={{endSecs}}" target="_self">Download KML</a>
 		  		</form>
 		  	</div>
