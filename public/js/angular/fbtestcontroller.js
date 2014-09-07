@@ -49,23 +49,27 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			$scope.playing = false;
 			return;
 		}
-		$scope.rangeMax=1000;
+		$scope.rangeMin = 0;
+		$scope.rangeMax = 1000;
 		$scope.updateRange();
 		$scope.map.fitBounds($scope.pathLayer.getBounds());
+
 		$scope.playing = true;
 		$scope.rangeMin = 0;
-		$scope.rangeMax = 1;
+		$scope.rangeMax = 10;
 		(function loop () {          
   			setTimeout(function () {   
   		  		if($scope.rangeMax>=1000 || $scope.playing == false){	
   		  			$scope.playing = false;
 			        return;
   				}
-  				$scope.rangeMax++;          
+  				$scope.rangeMax++;  
+  				$scope.rangeMax++;  
+  				$scope.rangeMax++;  
 				$scope.updateRange();
 				loop(); 
 				return;
-  			}, 20);
+  			}, 40);
 		})();
 	}
 

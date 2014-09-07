@@ -21,10 +21,10 @@
 				<h1 class = "centered"> TooMuchAbout.Me </h1> 
 				<div class = "header1 centered">{{test}}</div>
 				<div class = "centered" id = "top-buttons">
-				<button ng-click="clear()">Reset</button>
+				<button ng-click="play()">Play</button>
+				<button ng-click="clear()">New Map</button>
 				</div>
-					<button id="play" ng-click="play()"></button>
-					<slider ng-click="sliderUpdate()" floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
+					<slider ng-click="sliderUpdate();" floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
 				<div id="dates">{{startDate}} - {{endDate}}</span>
 			</div>
 			
