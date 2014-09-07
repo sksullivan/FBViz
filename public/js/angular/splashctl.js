@@ -89,6 +89,8 @@ fbVizApp.controller('splashctl', function ($scope, $http) {
 
 	$scope.upload = function () {
 		$scope.go = false;
+	}
+	$scope.submit = function () {
 		$scope.checks[1] = "check";
 	}
 

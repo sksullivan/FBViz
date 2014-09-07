@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/angular-slider.css"/>
 		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
 		<script src='//connect.facebook.net/en_UK/all.js'></script>
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
 		<script src='/js/angular/slider.js'></script>
 		<script src='/js/xml2json.js'></script>
@@ -23,7 +24,7 @@
 				<button ng-click="clear()">Reset</button>
 				</div>
 					<button id="play" ng-click="play()"></button>
-					<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
+					<slider ng-click="sliderUpdate()" floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
 				<div id="dates">{{startDate}} - {{endDate}}</span>
 			</div>
 			

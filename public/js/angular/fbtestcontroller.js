@@ -45,23 +45,32 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 	}
 
 	$scope.play = function () {
+		if($scope.playing){
+			$scope.playing = false;
+			return;
+		}
+		$scope.rangeMax=1000;
+		$scope.updateRange();
+		$scope.map.fitBounds($scope.pathLayer.getBounds());
 		$scope.playing = true;
 		$scope.rangeMin = 0;
 		$scope.rangeMax = 1;
-		loop();
-		function loop () {          
+		(function loop () {          
   			setTimeout(function () {   
-  		  		if($scope.rangeMax<1000){	
-			        $scope.rangeMax++; 
-			        console.log($scope.rangeMax);          
-					$scope.updateRange();
-					loop(); 
+  		  		if($scope.rangeMax>=1000 || $scope.playing == false){	
+  		  			$scope.playing = false;
+			        return;
   				}
-  				else{
-  					$scope.playing = false;
-  				}
-  			}, 30)
-		}
+  				$scope.rangeMax++;          
+				$scope.updateRange();
+				loop(); 
+				return;
+  			}, 20);
+		})();
+	}
+
+	$scope.sliderUpdate = function() {
+		$scope.playing = false;
 	}
 
 	$scope.dataSetSize;
@@ -69,7 +78,6 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 	$scope.num = 10; 
 
 	$scope.otherArr = new Array();
-
 
 	$scope.getCollection = function (num) { 
 		return new Array(num);
@@ -110,11 +118,6 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			$scope.map.fitBounds($scope.pathLayer.getBounds());
 		}
 	}
-
-	/*$scope.refineArray = function (array) {
-		ret = [];
-
-	}*/
 
 	$scope.addPostAnnotations = function () {
 		$http.get('/c/getFB').success(function (data) {
