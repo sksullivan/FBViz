@@ -18,13 +18,15 @@
 			<div id="map"></div>
 			<div id="control-bar">
 				<h1 class = "centered"> TooMuchAbout.Me </h1> 
+				<div class = "header1 centered">{{test}}</div>
 				<div class = "centered" id = "top-buttons">
-					<button ng-click="login()">Log-in</button>
+					<!--<button ng-click="login()">Log-in</button>-->
+					<button ng-click="clear()">Reset</button>
 				</div>
 				<slider floor="0" ceiling="1000" ng-model-low="rangeMin" ng-model-high="rangeMax"></slider>
 				<div id="dates">{{startDate}} - {{endDate}}</span>
 			</div>
-			<div class = "header1 centered">{{test}}</div>
+			
 			<div class = "full-wrapper">
 				<div ng-repeat = "member in dataList track by $index"> 
 					<div ng-repeat = "piece in dataList[$index]">
@@ -36,7 +38,7 @@
 						</div>
 					</div> 
 				</div>
-        		<button ng-click="clear()">Reset</button>
+        		
 			</div>
 		</div>
 	</body>	

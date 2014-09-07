@@ -10,7 +10,7 @@ fbVizApp.controller('splashctl', function ($scope, $http) {
 		$scope.go = true;
 	};
 
-	$scope.dataList = new Array(5); // this will hold the response later
+	$scope.dataList = new Array(2); // this will hold the response later
 
 	$scope.updateTimes = function() {
 		for(var i = 0; i < $scope.dataList.length; i++) {
@@ -32,14 +32,14 @@ fbVizApp.controller('splashctl', function ($scope, $http) {
 	      				if (response && !response.error) {
 	        				$scope.tempDataHolder = response; 
 	        				console.log($scope.tempDataHolder.data);
-	        				var reqs = 5;
+	        				var reqs = 2;
 	        				callback = function () {
 	        					$http.post('/c/postFB', {data: $scope.dataList}).success(function (data) {
 	        						$scope.checks[2] = "check";
 	        						console.log(data);
 	        					});
 	        				}
-	        				for(var i = 0; i < 5; i++) {
+	        				for(var i = 0; i < 2; i++) {
 	        					$scope.dataList[i] = $scope.tempDataHolder.data; 
 	        					console.log($scope.dataList[i]);
 	        					$http.get($scope.tempDataHolder.paging.next)
