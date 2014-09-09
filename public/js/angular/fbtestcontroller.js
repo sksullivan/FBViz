@@ -25,7 +25,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 			$scope.updateRange();
 		});
 		$scope.hideMap = true;
-		$scope.addPostAnnotations();
+		//$scope.addPostAnnotations();
 		$scope.playing = false;
 	};
 
@@ -41,7 +41,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 	}
 
 	$scope.clear = function () {
-		location.href = "/c/splash";
+		location.href = "/splash";
 	}
 
 	$scope.overview = function () {
@@ -118,6 +118,11 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 		}
 
 		var coordList = [];
+		console.log($scope.kmlJSON);
+		if ($scope.kmlJSON.kml.Document.Placemark.Track.coord == undefined) {
+			alert("No geographic data. Please try using a different Google Account or select a wider date range.");
+			return;
+		}
 		var max = parseInt($scope.rangeMax/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 		var min = parseInt($scope.rangeMin/1000 * $scope.kmlJSON.kml.Document.Placemark.Track.coord.length);
 
@@ -146,7 +151,7 @@ fbVizApp.controller('fbtestcontroller', function ($scope, $http, $filter) {
 	}
 
 	$scope.addPostAnnotations = function () {
-		$http.get('/c/getFB').success(function (data) {
+		$http.get('/getFB').success(function (data) {
 			console.log(data);
 			$scope.markers = [];
 			for(var i=0;i<data.length;i++) {

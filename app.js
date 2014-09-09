@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 var busboy = require('connect-busboy'); //middleware for form/file upload
 
 var routes = require('./routes/index');
-var custom = require('./routes/custom');
 
 var app = express();
 
@@ -25,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/c/', custom);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

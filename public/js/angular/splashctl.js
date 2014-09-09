@@ -34,7 +34,7 @@ fbVizApp.controller('splashctl', function ($scope, $http) {
 	        				console.log($scope.tempDataHolder.data);
 	        				var reqs = 2;
 	        				callback = function () {
-	        					$http.post('/c/postFB', {data: $scope.dataList}).success(function (data) {
+	        					$http.post('/postFB', {data: $scope.dataList}).success(function (data) {
 	        						$scope.checks[2] = "check";
 	        						console.log(data);
 	        					});
